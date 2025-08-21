@@ -1,8 +1,13 @@
 package br.com.etecia.epictask.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.etecia.epictask.model.Task;
 
 
 
@@ -12,8 +17,14 @@ public class TaskController {
 
 @GetMapping
     
-public String listTasks(){
-    System.out.println("Listar tarefas");
+public String listTasks(Model model){
+ var tasks = List.of(
+    new Task (1L, "Criar BD", "Criar banco mysql", 50, 0),
+    new Task (2L, "Prototipo", "Montar figma", 40, 0),
+    new Task (3L, "Deploy", "Colocar em produção", 50, 0)
+ );
+ model.addAttribute("tasks",tasks);
+
 return "tasks";
 
 }
