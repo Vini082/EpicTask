@@ -1,5 +1,6 @@
 package br.com.etecia.epictask.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.etecia.epictask.model.Task;
 
 
-
 @Controller
 @RequestMapping("/tasks")
 public class TaskController {
 
+private List<Task> repository = new ArrayList<>();
+
+
 @GetMapping
     
 public String listTasks(Model model){
- var tasks = List.of(
-    new Task (1L, "Criar BD", "Criar banco mysql", 50, 0),
-    new Task (2L, "Prototipo", "Montar figma", 40, 0),
-    new Task (3L, "Deploy", "Colocar em produção", 50, 0)
- );
- model.addAttribute("tasks",tasks);
+ 
+ model.addAttribute("tasks",repository);
 
 return "tasks";
 
@@ -38,8 +37,9 @@ public String ShowForm(){
 }
 
 @PostMapping("/form")
-public String create(@RequestBody Task task){
+public String create(Task task){
    System.out.println("Cadastrando tarefas..." + task);
+   repository.add(task);
    return "form";
 }
 
