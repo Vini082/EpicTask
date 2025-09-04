@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.etecia.epictask.model.Task;
 
@@ -37,10 +38,11 @@ public String ShowForm(){
 }
 
 @PostMapping("/form")
-public String create(Task task){
+public String create(Task task, RedirectAttributes redirect){
    System.out.println("Cadastrando tarefas..." + task);
    repository.add(task);
-   return "form";
+   redirect.addFlashAttribute("message", "Tarefa cadastrada com sucesso");
+   return "redirect:/tasks";
 }
 
 }

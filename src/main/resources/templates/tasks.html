@@ -21,6 +21,9 @@
         Nova tarefa
       </a>
 
+      <div th:if="${message != null}" role="alert" class="alert alert-success alert-soft m-4">
+        <span th:text="${message}"></span>
+      </div>
 
     <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">     
 
@@ -58,13 +61,6 @@
     </div>
       </div>
 </main>
-
-    <h2>Lista de tarefas</h2>
-    <ul>
-        <li>Tarefa 1</li>
-        <li>Tarefa 2</li>
-        <li>Tarefa 3</li>
-    </ul>
 
 </body>
 </html>
